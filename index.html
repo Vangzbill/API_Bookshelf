@@ -1,0 +1,28 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookshelf App</title>
+</head>
+<body>
+
+  <h1>Bookshelf App</h1>
+
+  <button onclick="getBooks()">Get Books</button>
+
+  <script>
+    async function getBooks() {
+      try {
+        const response = await fetch('http://localhost:9000/books');
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error('Error fetching books:', error);
+      }
+    }
+  </script>
+
+</body>
+</html>
