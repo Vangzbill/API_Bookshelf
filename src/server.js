@@ -13,12 +13,15 @@ const init = async () => {
     method: 'GET',
     path: '/books',
     handler: (request, h) => {
+      const simplifiedBooks = books.map(({ id, name, publisher }) => ({ id, name, publisher }));
+  
       return {
         status: 'success',
-        data: { books },
+        data: { books: simplifiedBooks },
       };
     },
   });
+  
 
   server.route({
     method: 'GET',
