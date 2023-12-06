@@ -21,27 +21,6 @@ const init = async () => {
       };
     },
   });
-  
-
-  server.route({
-    method: 'GET',
-    path: '/books/{bookId}',
-    handler: (request, h) => {
-      const { bookId } = request.params;
-      const book = books.find((b) => b.id === bookId);
-      if (!book) {
-        return h.response({
-          status: 'fail',
-          message: 'Buku tidak ditemukan',
-        }).code(404);
-      } else {
-        return {
-          status: 'success',
-          data: { book },
-        };
-      }
-    },
-  });
 
   server.route({
     method: 'POST',
@@ -100,6 +79,26 @@ const init = async () => {
           bookId: id,
         },
       }).code(201);
+    },
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/books/{bookId}',
+    handler: (request, h) => {
+      const { bookId } = request.params;
+      const book = books.find((b) => b.id === bookId);
+      if (!book) {
+        return h.response({
+          status: 'fail',
+          message: 'Buku tidak ditemukan',
+        }).code(404);
+      } else {
+        return {
+          status: 'success',
+          data: { book },
+        };
+      }
     },
   });
 
